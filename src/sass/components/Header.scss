@@ -1,0 +1,30 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+header {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 60px;
+
+    @include desktop {
+        height: auto;
+        align-items: flex-end;
+        margin-bottom: 0;
+        
+    }
+    
+    h1 {
+        color: $rose-900;
+        font-size: 2.7rem;
+        font-weight: 700;
+        margin-left: 20px;
+
+        @include desktop {
+            padding: 60px 0px 10px 60px;
+            margin-left: 0px;
+        }
+    
+    }
+}

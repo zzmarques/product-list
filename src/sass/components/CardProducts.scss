@@ -1,0 +1,50 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 30px 20px;
+    width: 335px;
+
+    @include desktop {
+        width: 250px;
+    }
+
+    figure {
+        position: relative;
+        width: 100%;
+
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+
+    .text-cards {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 7px;
+        height: 100px;
+
+        .name {
+            font-size: 17px;
+            color: $rose-400;
+        }
+
+        .category {
+            font-size: 19px;
+            font-weight: 600;
+            color: $rose-900;
+        }
+
+        .price {
+            color: $red;
+            font-weight: 600;
+            font-size: 19px;
+        }
+    }
+}
