@@ -4,7 +4,6 @@ import img from '../../../public/assets/images/icon-carbon-neutral.svg'
 import imgAddCart from '../../../public/assets/images/illustration-empty-cart.svg'
 import { useContext, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
-import data from "../../data/data.json";
 
 const Cart = () => {
     const { dados } = useContext(DadosContext);   

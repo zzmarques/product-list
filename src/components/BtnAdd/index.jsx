@@ -4,6 +4,8 @@ import '../../sass/components/BtnAdd.scss';
 import { useContext, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
 import { GiQueenCrown } from "react-icons/gi";
+import data from "../../data/data.json";
+
 
 const BtnAdd = ({ id }) => {
 
@@ -34,14 +36,15 @@ const BtnAdd = ({ id }) => {
         } else if (event.target.className === 'sub') {
             if (qnt > 0) novoDado = qnt - 1
         }
-
-        addDado(id, novoDado)
+        
+        addDado(id, {
+            name: data[id].name,
+            price: data[id].price,
+            qtde: novoDado
+        });
 
     }
 
-   
-
-    
 
     return (
         <>

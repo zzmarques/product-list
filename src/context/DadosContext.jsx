@@ -13,7 +13,7 @@ export const DadosProvider = React.memo(({ children }) => {
                     const novosDados = [...prevDados];
                     novosDados[i] = [i, item]
                     return novosDados;
-                }) 
+                })
             }
     return (
         <DadosContext.Provider value={{ dados, addDado }}>
