@@ -7,6 +7,7 @@ import "../../sass/Pages/Products.scss"
 
 
 function Products() {
+  
   return (
     <>
       <Header/>

@@ -11,7 +11,7 @@ export const DadosProvider = React.memo(({ children }) => {
         const addDado = (i, item) => {
                 setDados((prevDados) => {
                     const novosDados = [...prevDados];
-                    novosDados[i] = [i, item]
+                    novosDados[i] = [item]
                     return novosDados;
                 })
             }
