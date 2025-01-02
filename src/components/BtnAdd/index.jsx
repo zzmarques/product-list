@@ -1,13 +1,13 @@
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { GrSubtractCircle, GrAddCircle } from "react-icons/gr";
 import '../../sass/components/BtnAdd.scss';
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
 import { GiQueenCrown } from "react-icons/gi";
 import data from "../../data/data.json";
 
 
-const BtnAdd = ({ id }) => {
+const BtnAdd =  ({ id }) => {
 
     const { dados, addDado } = useContext(DadosContext)
 
@@ -45,7 +45,6 @@ const BtnAdd = ({ id }) => {
 
     }
 
-
     return (
         <>
             {
@@ -62,7 +61,7 @@ const BtnAdd = ({ id }) => {
                         }}>
                             <GrSubtractCircle />
                         </div>
-                        <span>{qnt}</span>
+                        <span className="qntd">{qnt}</span>
                         <div className="add" onClick={() => {
                             aumentar()
                             mudarDados(event)

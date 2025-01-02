@@ -8,26 +8,25 @@ import { DadosContext } from "../../context/DadosContext";
 const Cart = () => {
     const { dados } = useContext(DadosContext);   
 
-    dados.map((data) => {
-        console.log(data)
-    })
+    const cartDados = dados.filter(item => item !== undefined)
 
     return (
         <div className="cart">
             <h1>Your Cart (0)</h1>
 
             {
-                dados.length > 0 ? (
-                    <div className="content">
+                cartDados.length > 0 ? (
+                    <div className="cart">
+                        <h1>Your Cart (0)</h1>
                         {
-                        dados.map((data) => (
+                        cartDados.map((data) => (
                                     <div className="details">
                                         <div className="infos">
-                                            <span className="cat">{data[0].name}</span>
+                                            <span className="cat">{data.name}</span>
                                             <div className="info-quant">
-                                                <span className="qnt">{data[0].qtde}x</span>
-                                                <span className="price1">@{data[0].price}</span>
-                                                <span className="price2">${data[0].price}</span>
+                                                <span className="qnt">{data.qtde}x</span>
+                                                <span className="price1">@{data.price}</span>
+                                                <span className="price2">${data.price}</span>
                                             </div>
                                         </div>
                                         
@@ -37,6 +36,19 @@ const Cart = () => {
                                     </div>
                         ))
                         }
+                            <div className="confirm-content">
+                                <div className="info-total">
+                                    <span className="order">Order Total</span>
+                                    <span className="price-total">$</span>
+                                </div>
+
+                                <div className="neutral ">
+                                    <img src={img} alt=""/>
+                                    <p>This is a <span>carbon-neutral</span> delivery</p>
+                                </div>
+
+                                <button className="btn-confirm">Confirm Order</button>
+                            </div>
                     </div>
                 ) : (
                         <figure className="cart-vazio">
@@ -45,45 +57,7 @@ const Cart = () => {
                         </figure>
                     )
             }
-            {/* <figure className="cart-vazio">
-                <img src={imgAddCart} alt="" />
-                <span>Your added items will appear here</span>
-            </figure> */}
-
-            {/* <div>
-                <div className="details">
-                <div className="infos">
-                        <span className="cat">{}</span>
-                        <div className="info-quant">
-                            <span className="qnt">{}x</span>
-                            <span className="price1">@{}</span>
-                            <span className="price2">${}</span>
-                        </div>
-                    </div>
-                    
-                    <div className="close">
-                        <IoMdCloseCircleOutline />
-                    </div>
-                </div>
-
-
-            </div> */}
-
-            {/* <div className="confirm-content">
-                <div className="info-total">
-                    <span className="order">Order Total</span>
-                    <span className="price-total">$46.50</span>
-                </div>
-
-                <div className="neutral ">
-                    <img src={img} alt=""/>
-                    <p>This is a <span>carbon-neutral</span> delivery</p>
-                </div>
-
-                <button className="btn-confirm">Confirm Order</button>
-            </div> */}
         </div>
-
     );
 }
 
