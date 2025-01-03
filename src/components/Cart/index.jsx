@@ -33,7 +33,7 @@ const Cart = () => {
         const pedios = document.querySelectorAll('.details');
         const qtde = document.querySelector('.qntd');
         const qtdeTotalPedidos = +totalPedido.innerText.replace('Your Cart ', '') - pedidoQtde
-        console.log(pedios)
+        
         if(pedidoQtde > 1) {
             let priceX = 0;
             priceX = pedidoQtde * price
