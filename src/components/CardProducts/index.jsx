@@ -21,6 +21,7 @@ const CardProducts = ({ name, category, price, imgs, idB}) => {
                     <img src={img} alt="comida" />
                     <BtnAdd
                         id={idB}
+                        name={name}
                     ></BtnAdd>
                 </figure>
 

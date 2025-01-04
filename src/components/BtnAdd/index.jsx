@@ -7,7 +7,8 @@ import { GiQueenCrown } from "react-icons/gi";
 import data from "../../data/data.json";
 
 
-const BtnAdd =  ({ id }) => {
+const BtnAdd =  ({ id, name}) => {
+    const nameClass = name.replace(' ', '-').replace(' ', '-');
 
     const { dados, addDado } = useContext(DadosContext)
 
@@ -61,7 +62,7 @@ const BtnAdd =  ({ id }) => {
                         }}>
                             <GrSubtractCircle />
                         </div>
-                        <span className="qntd">{qnt}</span>
+                        <span className={`qntd ${nameClass}`} >{qnt}</span>
                         <div className="add" onClick={() => {
                             aumentar()
                             mudarDados(event)

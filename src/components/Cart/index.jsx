@@ -27,38 +27,62 @@ const Cart = () => {
     const closeP = (btn) => {
         const pedidoCart = btn.closest('.details');
         const price = +pedidoCart.querySelector('.price2').innerText.replace('$', '');
-        const pedidoQtde = +pedidoCart.querySelector('.qnt').innerText.replace('x', '')
+        const pedidoQtde = +pedidoCart.querySelector('.qnt').innerText.replace('x', '');
+        const namePedido = pedidoCart.querySelector('.cat').innerText.replace(' ', '-').replace(' ', '-');
         const priceTotal = document.querySelector('.price-total');
+        const containerPedidos = document.querySelector('.containerPedidos');
+        const containerCart = document.querySelector('.cart');
         const totalPedido = document.querySelector('.totalPedido');
-        const pedios = document.querySelectorAll('.details');
-        const qtde = document.querySelector('.qntd');
-        const qtdeTotalPedidos = +totalPedido.innerText.replace('Your Cart ', '') - pedidoQtde
+        const qtde = document.querySelectorAll('.qntd');
+        const qtdeTotalPedidos = +totalPedido.innerText.replace('Your Cart ', '').replace('(', '').replace(')', '') - pedidoQtde;
+        
+        qtde.forEach((p) => {
+            if (p.classList.contains(namePedido)) {
+                p.innerHTML = 0;
+            }
+        });
         
         if(pedidoQtde > 1) {
             let priceX = 0;
-            priceX = pedidoQtde * price
+            priceX = pedidoQtde * price;
             totalPrice -= priceX;
-            priceTotal.innerHTML = `$${totalPrice}`
+            priceTotal.innerHTML = `$${totalPrice}`;
             
         } else {
             totalPrice -= price;
-            priceTotal.innerHTML = `$${totalPrice}`
+            priceTotal.innerHTML = `$${totalPrice}`;
+        }
+
+        if (qtdeTotalPedidos === 0) {
+            const figureElement = document.createElement('figure'); 
+            figureElement.className = 'cart-vazio'; 
+            const imgElement = document.createElement('img'); 
+            imgElement.src = imgAddCart; imgElement.alt = ''; 
+            const spanElement = document.createElement('span'); 
+            spanElement.innerText = 'Your added items will appear here'; 
+
+            figureElement.appendChild(imgElement); 
+            figureElement.appendChild(spanElement);
+            containerPedidos.remove();
+            containerCart.appendChild(figureElement);
+            
+    
         }
         
-        totalPedido.innerHTML = `Your Cart ${qtdeTotalPedidos}`
+        totalPedido.innerHTML = `Your Cart (${qtdeTotalPedidos})`;
+        console.log()
         pedidoCart.remove();
     }
 
     return (
         <div className="cart">
-            {<h1 className="totalPedido">Your Cart {(`${total}`)}</h1>}
-
+            {<h1 className="totalPedido">Your Cart ({`${total}`})</h1>}
             {
                 cartDados.length > 0 ? (
-                    <div className="cart">
+                    <div className="containerPedidos">
                         {
-                        cartDados.map((data) => (
-                            <div className="details">
+                        cartDados.map((data, i) => (
+                            <div className="details" key={i}>
                                 <div className="infos">
                                     <span className="cat">{data.name}</span>
                                     <div className="info-quant">
