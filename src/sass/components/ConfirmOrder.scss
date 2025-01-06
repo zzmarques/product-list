@@ -11,9 +11,18 @@
     position: absolute;
     bottom: -6px;
     left: 0;
-    z-index: 0;
     background: #fff;
     padding-block: 20px;
+
+    @include desktop {
+        width: 700px;
+        left: 50%;
+        gap: 20px;
+        transform: translate(-50%);
+        bottom: 0;
+        border-radius: 10px;
+        padding-block: 40px;
+    }
 
     .container-title {
         width: 90%;
@@ -30,6 +39,11 @@
             margin-bottom: 1px;
             max-width: 200px;
             line-height: 37px;
+
+            @include desktop {
+                max-width: 400px;
+                margin-block: 10px;
+            }
         }
 
         p {
