@@ -1,0 +1,147 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+
+.confirm-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    z-index: 0;
+    background: #fff;
+    padding-block: 20px;
+
+    .container-title {
+        width: 90%;
+
+        .check {
+            font-size: 3em;
+            color: $green;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: $rose-900;
+            padding: 0;
+            margin-bottom: 1px;
+            max-width: 200px;
+            line-height: 37px;
+        }
+
+        p {
+            font-size: 17px;
+            color: $rose-400;
+            font-weight: 600;
+        }
+    }
+
+    .card-order {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        background: $rose-100;
+        border-radius: 8px;
+        
+        
+
+        .container-orders {
+            display: flex;
+            width: 85%;
+            height: 80px;
+            border-bottom: 1px solid $rose-300;
+
+            .container-order {
+                display: flex;
+                align-items: center;
+                width: 100%;
+
+                .order-photo {
+                    @include center;
+                    img {
+                        height: 50px;
+                        border-radius: 8px;
+                    }
+                }
+
+                .infos-order {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    width: 170px;
+                    margin-left: 10px;
+                    
+                    .order-name {
+                        display: block;
+                        max-width: 164px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: $rose-900;
+                        font-weight: 600;
+                        font-size: 15px;
+                    }
+                    .price-x-qtde {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+
+                        .qtde-order {
+                            color: $red;
+                            font-weight: bold;
+                            font-size: 15px;
+                        }
+
+                        .price-order {
+                            color: $rose-400;
+                            font-weight: 500;
+                            font-size: 15px;
+                        }
+
+                    }
+                }
+
+                .order-pirce-total {
+                    margin-left: 8px;
+                    @include center;
+                    height: 80px;
+                    width: 20px;
+
+                    span {
+                        padding-top: 15px;
+                        font-size: 18px;
+                        color: $rose-900;
+                        font-weight: 600;
+                    }
+                }
+
+            }
+        }
+    }
+
+    .container-price-final {
+        @include center;
+        justify-content: space-between;
+        width: 84%;
+        height: 60px;
+
+        .txt-order {
+
+            color: $rose-900;
+            font-weight: 500;
+            margin-left: 7px;
+        }
+
+        .price-total-orders {
+            font-size: 20px;
+            color: $rose-900;
+            font-weight: 600;
+            margin-right: 7px;
+        }
+    }
+}

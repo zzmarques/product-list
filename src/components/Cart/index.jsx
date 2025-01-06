@@ -4,6 +4,7 @@ import img from '../../../public/assets/images/icon-carbon-neutral.svg'
 import imgAddCart from '../../../public/assets/images/illustration-empty-cart.svg'
 import { useContext, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
+import ConfirmOrder from "../ConfirmOrder";
 
 const Cart = () => {
     const { dados } = useContext(DadosContext);   
@@ -123,6 +124,8 @@ const Cart = () => {
                         </figure>
                     )
             }
+
+            <ConfirmOrder/>
         </div>
     );
 }
