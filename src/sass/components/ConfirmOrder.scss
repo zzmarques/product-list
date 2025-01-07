@@ -57,80 +57,85 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        gap: 10px;
         width: 90%;
         height: auto;
         background: $rose-100;
         border-radius: 8px;
+        padding-top: 20px;
         
         
 
         .container-orders {
             display: flex;
             width: 85%;
-            height: 80px;
+            height: 60px;
+            padding-bottom: 10px;
             border-bottom: 1px solid $rose-300;
 
             .container-order {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
                 width: 100%;
 
                 .order-photo {
                     @include center;
+                    width: 230px;
+                    gap: 10px;
+
                     img {
                         height: 50px;
                         border-radius: 8px;
                     }
-                }
 
-                .infos-order {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-                    width: 170px;
-                    margin-left: 10px;
-                    
-                    .order-name {
-                        display: block;
-                        max-width: 164px;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        color: $rose-900;
-                        font-weight: 600;
-                        font-size: 15px;
-                    }
-                    .price-x-qtde {
+                    .infos-order {
                         display: flex;
-                        align-items: center;
-                        gap: 20px;
-
-                        .qtde-order {
-                            color: $red;
-                            font-weight: bold;
+                        flex-direction: column;
+                        gap: 5px;
+                        width: 170px;
+                        
+                        .order-name {
+                            display: block;
+                            max-width: 164px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            color: $rose-900;
+                            font-weight: 600;
                             font-size: 15px;
                         }
-
-                        .price-order {
-                            color: $rose-400;
-                            font-weight: 500;
-                            font-size: 15px;
+                        .price-x-qtde {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+    
+                            .qtde-order {
+                                color: $red;
+                                font-weight: bold;
+                                font-size: 15px;
+                            }
+    
+                            .price-order {
+                                color: $rose-400;
+                                font-weight: 500;
+                                font-size: 15px;
+                            }
+    
                         }
-
                     }
                 }
 
                 .order-pirce-total {
-                    margin-left: 8px;
                     @include center;
-                    height: 80px;
-                    width: 20px;
+                    height: 60px;
+                    width: 50px;
 
                     span {
-                        padding-top: 15px;
                         font-size: 18px;
                         color: $rose-900;
-                        font-weight: 600;
+                        font-weight: 700;
+                        margin-right: 8px
                     }
                 }
 
@@ -152,10 +157,10 @@
         }
 
         .price-total-orders {
-            font-size: 20px;
+            font-size: 23px;
             color: $rose-900;
-            font-weight: 600;
-            margin-right: 7px;
+            font-weight: 700;
+            margin-right: 8px;
         }
     }
 }

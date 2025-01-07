@@ -7,7 +7,13 @@ import { DadosContext } from "../../context/DadosContext";
 import ConfirmOrder from "../ConfirmOrder";
 
 const Cart = () => {
-    const { dados } = useContext(DadosContext);   
+    const { dados } = useContext(DadosContext);  
+    
+    const [ status, setStatus ] = useState(false);
+
+    const handleChange = () => {
+        setStatus(true)
+    }
 
     const cartDados = dados.filter(item => item !== undefined);
     let total = 0;
@@ -114,7 +120,10 @@ const Cart = () => {
                                     <p>This is a <span>carbon-neutral</span> delivery</p>
                                 </div>
 
-                                <button className="btn-confirm">Confirm Order</button>
+                                <button 
+                                    className="btn-confirm" 
+                                    onClick={handleChange}
+                                >Confirm Order</button>
                             </div>
                     </div>
                 ) : (
@@ -125,7 +134,7 @@ const Cart = () => {
                     )
             }
 
-            <ConfirmOrder/>
+            {status ? <ConfirmOrder priceTotal={totalPrice} infos={cartDados}/> : ''}
         </div>
     );
 }
