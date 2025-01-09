@@ -2,7 +2,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import '../../sass/components/Cart.scss';
 import img from '../../../public/assets/images/icon-carbon-neutral.svg'
 import imgAddCart from '../../../public/assets/images/illustration-empty-cart.svg'
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
 import ConfirmOrder from "../ConfirmOrder";
 
@@ -10,12 +10,25 @@ const Cart = () => {
     const { dados } = useContext(DadosContext);  
     
     const [ status, setStatus ] = useState(false);
+    const containerRef = useRef(null)
+
+    useEffect(() => {
+        if (status && containerRef.current) {
+            containerRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+        }
+    }, [status])
 
     const handleChange = () => {
-        setStatus(true)
+        setStatus(true)    
     }
 
-    const cartDados = dados.filter(item => item !== undefined);
+    const cartDados = dados.filter(item => {
+        return item !== undefined;
+    });
+
     let total = 0;
     let totalPrice = 0;
 
@@ -134,7 +147,9 @@ const Cart = () => {
                     )
             }
 
-            {status ? <ConfirmOrder priceTotal={totalPrice} infos={cartDados}/> : ''}
+            {status && 
+                    <ConfirmOrder priceTotal={totalPrice} infos={cartDados} ref={containerRef}/>
+            }
         </div>
     );
 }

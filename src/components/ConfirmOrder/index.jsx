@@ -1,9 +1,10 @@
 import { GoCheckCircle } from "react-icons/go";
 import data from '../../data/data.json'
 import '../../sass/components/ConfirmOrder.scss';
+import { forwardRef } from "react";
 
 
-const ConfirmOrder = ({ priceTotal, infos }) => {
+const ConfirmOrder = forwardRef(({ priceTotal, infos }, ref) => {
     
     const thumb = infos.map(el => {
         for (const e of data) {
@@ -22,6 +23,8 @@ const ConfirmOrder = ({ priceTotal, infos }) => {
         }
     });
 
+    
+
     const handleConfirm = (btn) => {
         const containerOrder = btn.closest('.confirm-order');
         containerOrder.remove();
@@ -32,7 +35,7 @@ const ConfirmOrder = ({ priceTotal, infos }) => {
     return (
         <>
             <div className="fundoEscuro"></div>
-            <div className="confirm-order">
+            <div className="confirm-order" ref={ref}>
             
 
             <div className="container-title">
@@ -91,6 +94,6 @@ const ConfirmOrder = ({ priceTotal, infos }) => {
         </>
         
     )
-}
+})
 
 export default ConfirmOrder;
