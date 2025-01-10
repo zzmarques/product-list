@@ -5,9 +5,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Red Hat Text", sans-serif;
-
+    scrollbar-width: none;
+    scroll-behavior: smooth;
 }
 
 body {
-    background: $rose-50;
+    background: $rose-50; 
 }

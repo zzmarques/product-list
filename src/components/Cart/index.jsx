@@ -1,16 +1,17 @@
-import { IoMdCloseCircleOutline } from "react-icons/io";
-import '../../sass/components/Cart.scss';
-import img from '../../../public/assets/images/icon-carbon-neutral.svg'
-import imgAddCart from '../../../public/assets/images/illustration-empty-cart.svg'
 import { useContext, useEffect, useRef, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import img from '../../../public/assets/images/icon-carbon-neutral.svg'
+import imgAddCart from '../../../public/assets/images/illustration-empty-cart.svg'
 import ConfirmOrder from "../ConfirmOrder";
+import '../../sass/components/Cart.scss';
 
 const Cart = () => {
     const { dados } = useContext(DadosContext);  
     
     const [ status, setStatus ] = useState(false);
-    const containerRef = useRef(null)
+    
+    const containerRef = useRef(null);
 
     useEffect(() => {
         if (status && containerRef.current) {
@@ -19,7 +20,7 @@ const Cart = () => {
             block: 'center',
         });
         }
-    }, [status])
+    }, [status]);
 
     const handleChange = () => {
         setStatus(true)    
@@ -28,6 +29,15 @@ const Cart = () => {
     const cartDados = dados.filter(item => {
         return item !== undefined;
     });
+
+    if(cartDados.length > 0) {
+        cartDados.forEach((el, i, arr) => {
+            if(el.qtde === 0) {
+                arr.splice(i, 1);
+                arr[0].qtde === 0 ? arr.pop() : ''
+            }
+        });
+    }
 
     let total = 0;
     let totalPrice = 0;
