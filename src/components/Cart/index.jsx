@@ -30,13 +30,26 @@ const Cart = () => {
         return item !== undefined;
     });
 
-    if(cartDados.length > 0) {
-        cartDados.forEach((el, i, arr) => {
-            if(el.qtde === 0) {
-                arr.splice(i, 1);
-                arr[0].qtde === 0 ? arr.pop() : ''
+    // if(cartDados.length > 0) {
+    //     cartDados.forEach((el, i, arr) => {
+    //         if(el.qtde === 0) {
+    //             arr.splice(i, 1);
+    //             // arr[i].qtde === 0 ? arr.pop() : '';
+    //         }
+    //     });
+    // }
+
+    if (cartDados.length > 0) {
+
+        for (const i in cartDados) {
+            if (cartDados[i].qtde === 0) {
+                cartDados.splice(i, 1); 
             }
-        });
+        }
+
+        if (cartDados.length > 0 && cartDados[0].qtde === 0) {
+            cartDados.pop();
+        }
     }
 
     let total = 0;
