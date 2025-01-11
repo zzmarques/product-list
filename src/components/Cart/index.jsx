@@ -7,11 +7,15 @@ import ConfirmOrder from "../ConfirmOrder";
 import '../../sass/components/Cart.scss';
 
 const Cart = () => {
-    const { dados } = useContext(DadosContext);  
-
+    const { dados, resetDados, verificarOrder } = useContext(DadosContext);  
     const [ status, setStatus ] = useState(false);
-    
+    const [key, setKey] = useState(0);
     const containerRef = useRef(null);
+
+    const cartDados = dados.filter(item => {
+        return item !== undefined;
+    });
+    
 
     useEffect(() => {
         if (status && containerRef.current) {
@@ -26,11 +30,6 @@ const Cart = () => {
         setStatus(true)    
     }
 
-    const cartDados = dados.filter(item => {
-        return item !== undefined;
-    });
-
-
     // if (cartDados.length > 0) {
 
     //     for (const i in cartDados) {
@@ -40,7 +39,7 @@ const Cart = () => {
     //     }
 
     //     if (cartDados.length > 0 && cartDados[0].qtde === 0) {
-    //         cartDados.pop();
+    //         resetDados();
     //     }        
     // }
 
@@ -65,8 +64,6 @@ const Cart = () => {
         const price = +pedidoCart.querySelector('.price2').innerText.replace('$', '');
         const pedidoQtde = +pedidoCart.querySelector('.qnt').innerText.replace('x', '');
         const priceTotal = document.querySelector('.price-total');
-        const containerPedidos = document.querySelector('.containerPedidos');
-        const containerCart = document.querySelector('.cart');
         const totalPedido = document.querySelector('.totalPedido');
         const qtde = document.querySelectorAll('.qntd');
         const qtdeTotalPedidos = +totalPedido.innerText.replace('Your Cart ', '').replace('(', '').replace(')', '') - pedidoQtde;
@@ -89,19 +86,10 @@ const Cart = () => {
         }
 
         if (qtdeTotalPedidos === 0) {
-            const figureElement = document.createElement('figure'); 
-            figureElement.className = 'cart-vazio'; 
-            const imgElement = document.createElement('img'); 
-            imgElement.src = imgAddCart; imgElement.alt = ''; 
-            const spanElement = document.createElement('span'); 
-            spanElement.innerText = 'Your added items will appear here'; 
-
-            figureElement.appendChild(imgElement); 
-            figureElement.appendChild(spanElement);
-            containerPedidos.remove();
-            containerCart.appendChild(figureElement);
-            
-    
+            cartDados.splice(0, cartDados.length);
+            setKey(prevKey => prevKey + 1); 
+            resetDados();
+            verificarOrder(qtdeTotalPedidos)
         }
         
         totalPedido.innerHTML = `Your Cart (${qtdeTotalPedidos})`;
@@ -109,7 +97,7 @@ const Cart = () => {
     }
 
     return (
-        <div className="cart">
+        <div className="cart" key={key}>
             {<h1 className="totalPedido">Your Cart ({`${total}`})</h1>}
             {
                 cartDados.length > 0 ? (

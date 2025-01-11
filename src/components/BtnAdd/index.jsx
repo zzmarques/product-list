@@ -1,21 +1,32 @@
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { GrSubtractCircle, GrAddCircle } from "react-icons/gr";
 import '../../sass/components/BtnAdd.scss';
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
 import data from "../../data/data.json";
 
 
 const BtnAdd =  ({ id, name}) => {
-    // const nameClass = name.replace(' ', '-').replace(' ', '-');
     const nameClass = name.split(" ").join("-");
-    const { dados, addDado } = useContext(DadosContext);
+    const { addDado, resetDados, qtdeOrder } = useContext(DadosContext);
     const [ toggle, setToggle ] = useState(true);
     const [ qnt, setQnt ] = useState(0);
+    let novoDado = 0;
 
     const altBtn = () => {
         setToggle(!toggle);
     }
+
+    useEffect(() => {
+        (() => {
+            if (qtdeOrder === 0) {
+                setQnt(qtdeOrder)
+                novoDado = qtdeOrder;
+                resetDados();
+            }
+        })();
+        console.log('ok')
+    }, [qtdeOrder]);
 
     const aumentar = () => {
         setQnt(qnt + 1);
@@ -27,7 +38,6 @@ const BtnAdd =  ({ id, name}) => {
 
     const mudarDados = (event) => {
         const btn = event.target.closest('.bnt');
-        let novoDado = 0;
 
         if (btn.classList.contains('add')) {
             novoDado = qnt + 1
@@ -44,7 +54,6 @@ const BtnAdd =  ({ id, name}) => {
                 qtde: novoDado
             });
         }
-
     }
 
     return (
