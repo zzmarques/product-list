@@ -7,7 +7,8 @@ import data from "../../data/data.json";
 
 
 const BtnAdd =  ({ id, name}) => {
-    const nameClass = name.replace(' ', '-').replace(' ', '-');
+    // const nameClass = name.replace(' ', '-').replace(' ', '-');
+    const nameClass = name.split(" ").join("-");
     const { dados, addDado } = useContext(DadosContext);
     const [ toggle, setToggle ] = useState(true);
     const [ qnt, setQnt ] = useState(0);

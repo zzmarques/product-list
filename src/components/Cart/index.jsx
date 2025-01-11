@@ -8,7 +8,7 @@ import '../../sass/components/Cart.scss';
 
 const Cart = () => {
     const { dados } = useContext(DadosContext);  
-    
+
     const [ status, setStatus ] = useState(false);
     
     const containerRef = useRef(null);
@@ -30,27 +30,19 @@ const Cart = () => {
         return item !== undefined;
     });
 
-    // if(cartDados.length > 0) {
-    //     cartDados.forEach((el, i, arr) => {
-    //         if(el.qtde === 0) {
-    //             arr.splice(i, 1);
-    //             // arr[i].qtde === 0 ? arr.pop() : '';
+
+    // if (cartDados.length > 0) {
+
+    //     for (const i in cartDados) {
+    //         if (cartDados[i].qtde === 0) {
+    //             cartDados.splice(i, 1); 
     //         }
-    //     });
+    //     }
+
+    //     if (cartDados.length > 0 && cartDados[0].qtde === 0) {
+    //         cartDados.pop();
+    //     }        
     // }
-
-    if (cartDados.length > 0) {
-
-        for (const i in cartDados) {
-            if (cartDados[i].qtde === 0) {
-                cartDados.splice(i, 1); 
-            }
-        }
-
-        if (cartDados.length > 0 && cartDados[0].qtde === 0) {
-            cartDados.pop();
-        }
-    }
 
     let total = 0;
     let totalPrice = 0;
@@ -68,19 +60,19 @@ const Cart = () => {
     }
 
     const closeP = (btn) => {
+        const nameOrder = btn.closest('.details').querySelector('.cat').innerText.split(" ").join("-");
         const pedidoCart = btn.closest('.details');
         const price = +pedidoCart.querySelector('.price2').innerText.replace('$', '');
         const pedidoQtde = +pedidoCart.querySelector('.qnt').innerText.replace('x', '');
-        const namePedido = pedidoCart.querySelector('.cat').innerText.replace(' ', '-').replace(' ', '-');
         const priceTotal = document.querySelector('.price-total');
         const containerPedidos = document.querySelector('.containerPedidos');
         const containerCart = document.querySelector('.cart');
         const totalPedido = document.querySelector('.totalPedido');
         const qtde = document.querySelectorAll('.qntd');
         const qtdeTotalPedidos = +totalPedido.innerText.replace('Your Cart ', '').replace('(', '').replace(')', '') - pedidoQtde;
-        
+
         qtde.forEach((p) => {
-            if (p.classList.contains(namePedido)) {
+            if (p.classList.contains(nameOrder)) {
                 p.innerHTML = 0;
             }
         });
@@ -113,7 +105,6 @@ const Cart = () => {
         }
         
         totalPedido.innerHTML = `Your Cart (${qtdeTotalPedidos})`;
-        console.log()
         pedidoCart.remove();
     }
 
