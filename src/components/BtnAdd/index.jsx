@@ -1,14 +1,15 @@
-import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { GrSubtractCircle, GrAddCircle } from "react-icons/gr";
-import '../../sass/components/BtnAdd.scss';
 import React, { useContext, useEffect, useState } from "react";
 import { DadosContext } from "../../context/DadosContext";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { GrSubtractCircle, GrAddCircle } from "react-icons/gr";
 import data from "../../data/data.json";
+import '../../sass/components/BtnAdd.scss';
 
 
 const BtnAdd =  ({ id, name}) => {
+
     const nameClass = name.split(" ").join("-");
-    const { addDado, resetDados, qtdeOrder } = useContext(DadosContext);
+    const { dados, addDado, resetDados, qtdeOrder, verificarOrder } = useContext(DadosContext);
     const [ toggle, setToggle ] = useState(true);
     const [ qnt, setQnt ] = useState(0);
     let novoDado = 0;
@@ -20,12 +21,16 @@ const BtnAdd =  ({ id, name}) => {
     useEffect(() => {
         (() => {
             if (qtdeOrder === 0) {
-                setQnt(qtdeOrder)
-                novoDado = qtdeOrder;
-                resetDados();
+                if (qnt !== 0) {
+                    setQnt(0)
+                    novoDado = 0;
+                    resetDados();
+                    verificarOrder(null);
+                    console.log(dados)
+                }
+                
             }
         })();
-        console.log('ok')
     }, [qtdeOrder]);
 
     const aumentar = () => {
@@ -62,7 +67,7 @@ const BtnAdd =  ({ id, name}) => {
                 toggle ? (
                     <div className="btn-Add" onClick={altBtn}>
                     <MdOutlineAddShoppingCart className="cart-icon"/>
-                    Add to Cart
+                        Add to Cart
                     </div>
                 ) : (
                     <div className="btn-qnt">

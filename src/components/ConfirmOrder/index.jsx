@@ -1,7 +1,8 @@
 import { GoCheckCircle } from "react-icons/go";
+import { forwardRef } from "react";
 import data from '../../data/data.json'
 import '../../sass/components/ConfirmOrder.scss';
-import { forwardRef } from "react";
+
 
 
 const ConfirmOrder = forwardRef(({ priceTotal, infos }, ref) => {
@@ -17,9 +18,9 @@ const ConfirmOrder = forwardRef(({ priceTotal, infos }, ref) => {
 
     const orderPriceTotal = infos.map(el => {
         if(el.qtde > 1) {
-            return el.qtde * el.price
+            return el.qtde * el.price;
         } else {
-            return el.price
+            return el.price;
         }
     });
 

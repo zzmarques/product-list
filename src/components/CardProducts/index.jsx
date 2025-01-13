@@ -1,5 +1,6 @@
+import BtnAdd from "../BtnAdd";
 import '../../sass/components/CardProducts.scss';
-import BtnAdd from "../BtnAdd"
+
 
 const CardProducts = ({ name, category, price, imgs, idB}) => {
 
@@ -7,11 +8,11 @@ const CardProducts = ({ name, category, price, imgs, idB}) => {
     let img;
     
     if (wv >= 1024) {
-        img = imgs.desktop
+        img = imgs.desktop;
     } else if (wv >= 768) {
-        img = imgs.tablet
+        img = imgs.tablet;
     } else {
-        img = imgs.mobile
+        img = imgs.mobile;
         
     }
 

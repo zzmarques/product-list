@@ -11,6 +11,8 @@ const Cart = () => {
     const [ status, setStatus ] = useState(false);
     const [key, setKey] = useState(0);
     const containerRef = useRef(null);
+    let total = 0;
+    let totalPrice = 0;
 
     const cartDados = dados.filter(item => {
         return item !== undefined;
@@ -29,22 +31,6 @@ const Cart = () => {
     const handleChange = () => {
         setStatus(true)    
     }
-
-    // if (cartDados.length > 0) {
-
-    //     for (const i in cartDados) {
-    //         if (cartDados[i].qtde === 0) {
-    //             cartDados.splice(i, 1); 
-    //         }
-    //     }
-
-    //     if (cartDados.length > 0 && cartDados[0].qtde === 0) {
-    //         resetDados();
-    //     }        
-    // }
-
-    let total = 0;
-    let totalPrice = 0;
 
     for (const element of cartDados) {
         let priceX = 0;
@@ -89,7 +75,7 @@ const Cart = () => {
             cartDados.splice(0, cartDados.length);
             setKey(prevKey => prevKey + 1); 
             resetDados();
-            verificarOrder(qtdeTotalPedidos)
+            verificarOrder(qtdeTotalPedidos);
         }
         
         totalPedido.innerHTML = `Your Cart (${qtdeTotalPedidos})`;
