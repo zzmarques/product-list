@@ -1,7 +1,7 @@
 # Product List
 
 <figure>
-    <img src="public/assets/imgs/product-list.png">
+    <img src="public/assets/images/product-list.png">
 </figure>
 
 ## 📝 **Sobre o Projeto**
